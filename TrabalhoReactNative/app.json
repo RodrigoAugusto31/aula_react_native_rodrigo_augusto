@@ -1,4 +1,27 @@
 {
   "name": "TrabalhoReactNative",
-  "displayName": "TrabalhoReactNative"
+  "displayName": "TrabalhoReactNative",
+  "icon": "./path/to/your/app-icon.png",
+  "splash": {
+    "image": "./path/to/your/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "ios": {
+    "supportsTablet": true
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./path/to/your/adaptive-icon.png",
+      "backgroundColor": "#FFFFFF"
+    }
+  },
+  "web": {
+    "favicon": "./path/to/your/favicon.png"
+  },
+  "packagerOpts": {
+    "config": "metro.config.js",
+    "sourceExts": ["js", "jsx", "ts", "tsx"]
+  },
+  "assetBundlePatterns": ["**/*", "!**/*.map"]
 }
