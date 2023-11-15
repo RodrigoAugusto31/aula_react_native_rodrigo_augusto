@@ -1,17 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
+import React, { useState } from 'react';
 import {PaperProvider, MD3DarkTheme as DefaultTheme} from 'react-native-paper';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Main from './src/components/Main';
+import Map from './src/components/Map';
 import Header from './src/components/Header';
-import EditMarker from './src/components/EditMarker';
+import AddMarker from './src/components/AddMarker';
+import MarkerDetails from './src/components/MarkerDetails';
+import { MarkersContext } from './src/context/MarkersContext';
+import { markers } from './src/data/markers';
+import { Marker } from './src/type/marker';
 
 const theme = {
   ...DefaultTheme,
@@ -21,21 +18,26 @@ const theme = {
   },
 };
 
-const Stack = createNativeStackNavigator();
+const StackNavigator = createNativeStackNavigator();
 
 function App(): JSX.Element {
+
+  const [mymarkers, setMarkers] = useState<Array<Marker>>([]);
+
   return (
     <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Main"
-          screenOptions={{
-            headerTitle: Header,
-          }}>
-          <Stack.Screen name="Main" component={Main} />
-          <Stack.Screen name="EditMarker" component={EditMarker} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <MarkersContext.Provider value={{
+        mymarkers,
+        setMarkers
+      }}>
+        <NavigationContainer>
+          <StackNavigator.Navigator>
+            <StackNavigator.Screen name="Map" component={Map} />
+            <StackNavigator.Screen name="AddMarker" component={AddMarker} />
+            <StackNavigator.Screen name="MarkerDetails" component={MarkerDetails} />
+          </StackNavigator.Navigator>
+        </NavigationContainer>
+      </MarkersContext.Provider>
     </PaperProvider>
   );
 }

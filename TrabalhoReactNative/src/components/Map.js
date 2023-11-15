@@ -3,19 +3,26 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Text} from 'react-native-paper';
 import Mapbox, {MarkerView} from '@rnmapbox/maps';
 import { keys } from '../secrets/Keys';
+import { MarkersContext } from '../context/MarkersContext';
+import {TouchableOpacity} from 'react-native';
+import { useContext } from 'react';
 
 Mapbox.setWellKnownTileServer('Mapbox');
 Mapbox.setAccessToken(keys.MAP_BOX_KEY);
 
-const Main = () => {
-  const [markers, setMarkers] = useState([[-43.23021649150746,-22.915567583135044]]);
+const Map = ({navigation}) => {
 
-  const addMarker = () => {
-    setMarkers([[-43.23021649150746,-22.915567583135044],[-43.23014685209725,-22.921401149104398]]);
-  };
+  const {mymarkers} = useContext(MarkersContext);
 
   return (
     <View>
+
+      {mymarkers.map(mymarker => (
+        <TouchableOpacity onPress={() => navigation.navigate('MarkerDetails', {marker: mymarker})}>
+          <Text>{mymarker.nome} - Marker Details</Text>
+        </TouchableOpacity>
+      ))}
+
       <ScrollView style={styles.container}>
         <Mapbox.MapView style={styles.map}>
           <Mapbox.Camera 
@@ -28,7 +35,7 @@ const Main = () => {
               <Text>Marker 02</Text>
             </MarkerView>
         </Mapbox.MapView>
-        <Button onPress={addMarker}>Add marker</Button>
+        <Button onPress={() => navigation.navigate('AddMarker')}>Add marker</Button>
       </ScrollView>
     </View>
   );
@@ -49,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;
+export default Map;
