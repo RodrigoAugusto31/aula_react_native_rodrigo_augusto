@@ -16,26 +16,31 @@ const Map = ({navigation}) => {
 
   return (
     <View>
-
-      {mymarkers.map(mymarker => (
-        <TouchableOpacity onPress={() => navigation.navigate('MarkerDetails', {marker: mymarker})}>
+      {mymarkers.map((mymarker) => (
+        <TouchableOpacity
+          key={mymarker.id} 
+          onPress={() => navigation.navigate('MarkerDetails', { marker: mymarker })}
+        >
           <Text>{mymarker.nome} - Marker Details</Text>
         </TouchableOpacity>
       ))}
 
       <ScrollView style={styles.container}>
         <Mapbox.MapView style={styles.map}>
-          <Mapbox.Camera 
-          zoomLevel={12}
-          centerCoordinate={[-43.23021649150746,-22.915567583135044]} />
-          <MarkerView coordinate={[-43.23021649150746,-22.915567583135044]}>
-              <Text>Marker 01</Text>
+          <Mapbox.Camera zoomLevel={12} centerCoordinate={[-43.23021649150746, -22.915567583135044]} />
+          {mymarkers.map((mymarker) => (
+            <MarkerView key={mymarker.id} coordinate={[mymarker.latitude, mymarker.longitude]}>
+              <TouchableOpacity
+                key={mymarker.id} 
+                onPress={() => navigation.navigate('MarkerDetails', { marker: mymarker })}
+              >
+                <Text>{mymarker.nome}</Text>
+              </TouchableOpacity>
             </MarkerView>
-            <MarkerView coordinate={[-43.23014685209725,-22.921401149104398]}>
-              <Text>Marker 02</Text>
-            </MarkerView>
+          ))}
         </Mapbox.MapView>
-        <Button onPress={() => navigation.navigate('AddMarker')}>Add marker</Button>
+        <Button onPress={() => navigation.navigate('AddMarker')} title="Add marker" />
+        <Button onPress={() => navigation.navigate('MarkersList')} title="Markers" />
       </ScrollView>
     </View>
   );

@@ -9,6 +9,7 @@ import MarkerDetails from './src/components/MarkerDetails';
 import { MarkersContext } from './src/context/MarkersContext';
 import { markers } from './src/data/markers';
 import { Marker } from './src/type/marker';
+import MarkersList from './src/components/MarkersList';
 
 const theme = {
   ...DefaultTheme,
@@ -35,6 +36,7 @@ function App(): JSX.Element {
             <StackNavigator.Screen name="Map" component={Map} />
             <StackNavigator.Screen name="AddMarker" component={AddMarker} />
             <StackNavigator.Screen name="MarkerDetails" component={MarkerDetails} />
+            <StackNavigator.Screen name="MarkersList" component={MarkersList} />
           </StackNavigator.Navigator>
         </NavigationContainer>
       </MarkersContext.Provider>

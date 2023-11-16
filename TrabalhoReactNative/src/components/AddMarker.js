@@ -5,7 +5,7 @@ import {useState} from 'react';
 import { MarkersContext } from '../context/MarkersContext';
 import { useContext } from 'react';
 
-const EditMarker = ({navigation}) => {
+const AddMarker = ({navigation}) => {
 
 const {mymarkers, setMarkers} = useContext(MarkersContext);
 
@@ -35,4 +35,4 @@ const [longitude, setLongitude] = useState('');
   );
 };
 
-export default EditMarker;
+export default AddMarker;
