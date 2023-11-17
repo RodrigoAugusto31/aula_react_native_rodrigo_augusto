@@ -13,6 +13,7 @@ const MarkersList = ({navigation}) => {
     const {mymarkers} = useContext(MarkersContext);
 
     return (
+      
         <View>
             {mymarkers.map((mymarker) => (
         <TouchableOpacity
