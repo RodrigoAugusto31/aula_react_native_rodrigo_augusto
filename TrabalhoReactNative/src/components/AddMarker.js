@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useState} from 'react';
 import { MarkersContext } from '../context/MarkersContext';
@@ -27,17 +27,17 @@ const [longitude, setLongitude] = useState('');
 
 
   return (
-    <View style={{ padding: 50 }}>
+    <View style={styles.container}>
       <TextInput
         ref={nameInputRef}
-        style={{ backgroundColor: 'white' }}
+        style={styles.inputText}
         label='Name'
         mode='outlined'
         value={name}
         onChangeText={setName}
       />
       <TextInput
-        style={{ marginTop: 15, backgroundColor: 'white' }}
+        style={styles.inputText}
         textColor='black'
         label='Latitude'
         mode='outlined'
@@ -45,18 +45,14 @@ const [longitude, setLongitude] = useState('');
         onChangeText={setLatitude}
       />
       <TextInput
-        style={{ marginTop: 15, marginBottom: 15, backgroundColor: 'white' }}
+        style={styles.inputText}
         label='Longitude'
         mode='outlined'
         value={longitude}
         onChangeText={setLongitude}
       />
       <Button
-        style={{
-          borderWidth: 2,
-          marginTop: 15,
-          borderColor: 'black',
-        }}
+        style={styles.button}
         mode='contained'
         textColor='black'
         onPress={() => {
@@ -72,5 +68,20 @@ const [longitude, setLongitude] = useState('');
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: { 
+    padding: 50
+  },
+  inputText: {
+    marginTop: 15,
+    backgroundColor: 'white',
+  },
+  button: {
+    borderWidth: 3,
+    marginTop: 15,
+    borderColor: 'black',
+  }
+});
 
 export default AddMarker;

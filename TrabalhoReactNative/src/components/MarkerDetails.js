@@ -1,29 +1,47 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Text, Card, Title, Paragraph} from 'react-native-paper';
+import {View, StyleSheet} from 'react-native';
+import {Card, Title, Paragraph} from 'react-native-paper';
 import {useRoute} from '@react-navigation/native'
 
 const MarkerDetails = () => {
     const route = useRoute();
 
     return (
-        <View style={{ margin: 10, padding:50 }}>
-        <Card.Content style={{ borderRadius: 20, backgroundColor: '#CECECE',borderWidth: 2, borderColor: 'black', padding: 10 }}>
-            <Title style={{ fontWeight: 'bold' }}>Name:</Title>
+        <View style={styles.container}>
+        <Card.Content style={styles.card}>
+            <Title style={styles.title}>Name:</Title>
             <Paragraph>{route.params.marker.nome}</Paragraph>
         </Card.Content>
     
-        <Card.Content style={{ borderRadius: 20, backgroundColor: '#CECECE', marginTop: 10, borderWidth: 2, borderColor: 'black', padding: 10 }}>
-            <Title style={{ fontWeight: 'bold' }}>Latidude:</Title>
+        <Card.Content style={styles.card}>
+            <Title style={styles.title}>Latidude:</Title>
           <Paragraph>{route.params.marker.latitude}</Paragraph>
         </Card.Content>
     
-        <Card.Content style={{ borderRadius: 20, backgroundColor: '#CECECE', marginTop: 10, borderWidth: 2, borderColor: 'black', padding: 10 }}>
-            <Title style={{ fontWeight: 'bold' }}>Longitude:</Title>
+        <Card.Content style={styles.card}>
+            <Title style={styles.title}>Longitude:</Title>
           <Paragraph>{route.params.marker.longitude}</Paragraph>
         </Card.Content>
       </View>
     );
 };
+
+const styles = StyleSheet.create({
+  container: { 
+    padding:40,
+  },
+  card: {
+    borderRadius: 20,
+    backgroundColor: '#CECECE',
+    marginTop: 10,
+    borderWidth: 3,
+    borderColor: 'black',
+    padding: 10
+  },
+  title: {
+    fontWeight: 'bold'
+  }
+});
+
 
 export default MarkerDetails;
