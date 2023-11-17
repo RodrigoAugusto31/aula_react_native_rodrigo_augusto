@@ -1,8 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 const HeaderIcon = () => {
 
@@ -11,7 +9,10 @@ const HeaderIcon = () => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate('MarkersList')}>
         <View style={styles.container}>
-            <Icon name="bars" size={22}/>
+          <Image
+            source={require('../icons/lista.png')}
+            style={{ width: 35, height: 35 }}
+          />
         </View>
     </TouchableOpacity>
   );
