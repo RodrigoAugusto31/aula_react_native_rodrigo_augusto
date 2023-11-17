@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View,ScrollView,StyleSheet } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { MarkersContext } from '../context/MarkersContext';
-import { useContext } from 'react';
 
 const MarkersList = ({ navigation }) => {
   const { mymarkers } = useContext(MarkersContext);

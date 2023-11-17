@@ -1,9 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
-import {useState} from 'react';
 import { MarkersContext } from '../context/MarkersContext';
-import { useContext } from 'react';
 
 const AddMarker = () => {
   const nameInputRef = useRef(null);

@@ -1,11 +1,9 @@
-import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import {Button, Text} from 'react-native-paper';
+import React, { useContext, useState, useEffect } from 'react';
+import {ScrollView, StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import {Button} from 'react-native-paper';
 import Mapbox, {MarkerView} from '@rnmapbox/maps';
 import { keys } from '../secrets/Keys';
 import { MarkersContext } from '../context/MarkersContext';
-import {TouchableOpacity} from 'react-native';
-import { useContext, useState, useEffect } from 'react';
 import Geolocation from '@react-native-community/geolocation';
 
 Mapbox.setWellKnownTileServer('Mapbox');
@@ -41,12 +39,15 @@ const Map = ({navigation}) => {
         <Mapbox.MapView style={styles.map}>
           <Mapbox.Camera zoomLevel={12} centerCoordinate={[userLongitude, userLatitude]} />
           {mymarkers.map((mymarker) => (
-            <MarkerView key={mymarker.id} coordinate={[mymarker.latitude, mymarker.longitude]}>
+            <MarkerView key={mymarker.id} coordinate={[mymarker.longitude, mymarker.latitude]} >
               <TouchableOpacity
                 key={mymarker.id} 
                 onPress={() => navigation.navigate('MarkerDetails', { marker: mymarker })}
               >
-                <Text>{mymarker.nome}</Text>
+                <Image
+                  source={require('../icons/pointer.png')} 
+                  style={styles.icon} 
+                />
               </TouchableOpacity>
             </MarkerView>
           ))}
@@ -79,6 +80,11 @@ const styles = StyleSheet.create({
   map: {
     width: '100%',
     height: 600,
+  },
+  icon: {
+    width: 40, 
+    height: 40, 
+    alignContent:'center'
   },
 });
 
