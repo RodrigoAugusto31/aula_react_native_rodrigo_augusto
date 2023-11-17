@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import {PaperProvider, MD3DarkTheme as DefaultTheme} from 'react-native-paper';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Map from './src/components/Map';
-import Header from './src/components/Header';
+import HeaderIcon from './src/components/HeaderIcon';
 import AddMarker from './src/components/AddMarker';
 import MarkerDetails from './src/components/MarkerDetails';
 import { MarkersContext } from './src/context/MarkersContext';
-import { markers } from './src/data/markers';
 import { Marker } from './src/type/marker';
 import MarkersList from './src/components/MarkersList';
 
@@ -21,6 +20,10 @@ const theme = {
 
 const StackNavigator = createNativeStackNavigator();
 
+const stackOptions = {
+  headerRight: HeaderIcon,
+}
+
 function App(): JSX.Element {
 
   const [mymarkers, setMarkers] = useState<Array<Marker>>([]);
@@ -32,11 +35,28 @@ function App(): JSX.Element {
         setMarkers
       }}>
         <NavigationContainer>
-          <StackNavigator.Navigator>
-            <StackNavigator.Screen name="Map" component={Map} />
-            <StackNavigator.Screen name="AddMarker" component={AddMarker} />
-            <StackNavigator.Screen name="MarkerDetails" component={MarkerDetails} />
-            <StackNavigator.Screen name="MarkersList" component={MarkersList} />
+          <StackNavigator.Navigator
+          initialRouteName='Map'screenOptions={stackOptions}>
+            <StackNavigator.Screen 
+              name="Map" 
+              component={Map} 
+              options={{ title: 'Map' }}
+              />
+            <StackNavigator.Screen
+              name='AddMarker'
+              component={AddMarker}
+              options={{ title: 'Add Marker' }}
+            />            
+            <StackNavigator.Screen 
+              name="MarkerDetails" 
+              component={MarkerDetails} 
+              options={{ title: 'Marker Details' }}
+              />
+            <StackNavigator.Screen 
+              name="MarkersList" 
+              component={MarkersList} 
+              options={{ title: 'Marker List' }}
+              />
           </StackNavigator.Navigator>
         </NavigationContainer>
       </MarkersContext.Provider>

@@ -47,22 +47,6 @@ const Map = ({navigation}) => {
       >
         Add Marker
       </Button>
-      <Button
-        style={{
-          position: 'absolute',
-          bottom: 100,
-          right: 80,
-          left: 80,
-          zIndex: 1,
-          borderWidth: 2,  
-          borderColor: 'black',  
-        }}
-        mode='contained'
-        textColor='black'
-        onPress={() => navigation.navigate('MarkersList')}
-      >
-        Markers List
-      </Button>
     </View>
   );
 };
@@ -70,11 +54,6 @@ const Map = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     padding: 0,
-  },
-  card: {
-    borderWidth: 1,
-    padding: 5,
-    marginBottom: 10,
   },
   map: {
     width: '100%',

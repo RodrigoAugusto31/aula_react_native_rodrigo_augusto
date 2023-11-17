@@ -1,11 +1,12 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React, { useRef } from 'react';
+import {View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useState} from 'react';
 import { MarkersContext } from '../context/MarkersContext';
 import { useContext } from 'react';
 
-const AddMarker = ({navigation}) => {
+const AddMarker = () => {
+  const nameInputRef = useRef(null);
 
 const {mymarkers, setMarkers} = useContext(MarkersContext);
 
@@ -27,7 +28,9 @@ const [longitude, setLongitude] = useState('');
 
   return (
     <View style={{ padding: 50 }}>
-      <TextInput style={{ backgroundColor: 'white' }}
+      <TextInput
+        ref={nameInputRef}
+        style={{ backgroundColor: 'white' }}
         label='Name'
         mode='outlined'
         value={name}
@@ -38,13 +41,15 @@ const [longitude, setLongitude] = useState('');
         textColor='black'
         label='Latitude'
         mode='outlined'
-        value={latitude} onChangeText={setLatitude}
+        value={latitude}
+        onChangeText={setLatitude}
       />
       <TextInput
-        style={{ marginTop: 15, marginBottom:15, backgroundColor: 'white' }} 
+        style={{ marginTop: 15, marginBottom: 15, backgroundColor: 'white' }}
         label='Longitude'
         mode='outlined'
-        value={longitude} onChangeText={setLongitude}
+        value={longitude}
+        onChangeText={setLongitude}
       />
       <Button
         style={{
@@ -55,8 +60,11 @@ const [longitude, setLongitude] = useState('');
         mode='contained'
         textColor='black'
         onPress={() => {
-          addMarker(); 
-          navigation.navigate('Map'); 
+          addMarker();
+          setName('');
+          setLatitude('');
+          setLongitude('');
+          nameInputRef.current.focus();
         }}
       >
         Save Marker
