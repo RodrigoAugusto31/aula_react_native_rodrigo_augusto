@@ -14,8 +14,8 @@ import MarkersList from './src/components/MarkersList';
 const theme = {
   ...DefaultTheme,
   colors: {
-    primary: '#ff0000',
-    secondary: '#00ff00',
+    primary: '#CECECE',
+    secondary: '#686A6C',
   },
 };
 

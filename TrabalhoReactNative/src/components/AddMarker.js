@@ -26,11 +26,38 @@ const [longitude, setLongitude] = useState('');
 
 
   return (
-    <View>
-      <TextInput value={name} onChangeText={setName}/>
-      <TextInput value={latitude} onChangeText={setLatitude}/>
-      <TextInput value={longitude} onChangeText={setLongitude}/>
-      <Button onPress={addMarker}>Save</Button>
+    <View style={{ margin: 10 }}>
+      <TextInput
+        style={{ marginTop: 5 }}
+        label='Name'
+        mode='flat'
+        value={name} onChangeText={setName}
+      />
+      <TextInput
+        style={{ marginTop: 15 }}
+        textColor='black'
+        label='Latitude'
+        mode='flat'
+        value={latitude} onChangeText={setLatitude}
+      />
+      <TextInput
+        style={{ marginTop: 15, marginBottom: 15 }} 
+        label='Longitude'
+        mode='flat'
+        value={longitude} onChangeText={setLongitude}
+      />
+      <Button
+        style={{
+          borderWidth: 2,
+          marginTop: 15,
+          borderColor: 'black',
+        }}
+        mode='contained'
+        textColor='black'
+        onPress={addMarker}
+      >
+        Save
+      </Button>
     </View>
   );
 };

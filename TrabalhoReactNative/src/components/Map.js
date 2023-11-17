@@ -16,15 +16,6 @@ const Map = ({navigation}) => {
 
   return (
     <View>
-      {mymarkers.map((mymarker) => (
-        <TouchableOpacity
-          key={mymarker.id} 
-          onPress={() => navigation.navigate('MarkerDetails', { marker: mymarker })}
-        >
-          <Text>{mymarker.nome} - Marker Details</Text>
-        </TouchableOpacity>
-      ))}
-
       <ScrollView style={styles.container}>
         <Mapbox.MapView style={styles.map}>
           <Mapbox.Camera zoomLevel={12} centerCoordinate={[-43.23021649150746, -22.915567583135044]} />
@@ -39,16 +30,46 @@ const Map = ({navigation}) => {
             </MarkerView>
           ))}
         </Mapbox.MapView>
-        <Button onPress={() => navigation.navigate('AddMarker')} title="Add marker" />
-        <Button onPress={() => navigation.navigate('MarkersList')} title="Markers" />
       </ScrollView>
+      <Button
+        style={{
+          position: 'absolute',
+          bottom: 30,
+          right: 80,
+          left: 80,
+          zIndex: 1,
+          borderWidth: 2,  
+          borderColor: 'black',  
+        }}
+        mode='contained'
+        textColor='black'
+        onPress={() => navigation.navigate('AddMarker')}
+      >
+        Add Marker
+      </Button>
+      <Button
+        style={{
+          position: 'absolute',
+          bottom: 100,
+          right: 80,
+          left: 80,
+          zIndex: 1,
+          borderWidth: 2,  
+          borderColor: 'black',  
+        }}
+        mode='contained'
+        textColor='black'
+        onPress={() => navigation.navigate('MarkersList')}
+      >
+        Markers List
+      </Button>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 0,
   },
   card: {
     borderWidth: 1,
@@ -57,7 +78,7 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: 400,
+    height: 600,
   },
 });
 
