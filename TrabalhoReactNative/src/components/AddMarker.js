@@ -26,24 +26,24 @@ const [longitude, setLongitude] = useState('');
 
 
   return (
-    <View style={{ margin: 10 }}>
-      <TextInput
-        style={{ marginTop: 5 }}
+    <View style={{ padding: 50 }}>
+      <TextInput style={{ backgroundColor: 'white' }}
         label='Name'
-        mode='flat'
-        value={name} onChangeText={setName}
+        mode='outlined'
+        value={name}
+        onChangeText={setName}
       />
       <TextInput
-        style={{ marginTop: 15 }}
+        style={{ marginTop: 15, backgroundColor: 'white' }}
         textColor='black'
         label='Latitude'
-        mode='flat'
+        mode='outlined'
         value={latitude} onChangeText={setLatitude}
       />
       <TextInput
-        style={{ marginTop: 15, marginBottom: 15 }} 
+        style={{ marginTop: 15, marginBottom:15, backgroundColor: 'white' }} 
         label='Longitude'
-        mode='flat'
+        mode='outlined'
         value={longitude} onChangeText={setLongitude}
       />
       <Button
@@ -54,9 +54,12 @@ const [longitude, setLongitude] = useState('');
         }}
         mode='contained'
         textColor='black'
-        onPress={addMarker}
+        onPress={() => {
+          addMarker(); 
+          navigation.navigate('Map'); 
+        }}
       >
-        Save
+        Save Marker
       </Button>
     </View>
   );
